@@ -8,7 +8,7 @@ import { users } from 'src/db/users';
 export class UsersService {
   private users = [...users];
 
-  async findAll(role?: UserRole) {
+  findAll(role?: UserRole) {
     if (role) {
       const usersWithRoles = this.users.filter((user) => user.role === role);
 
@@ -22,7 +22,7 @@ export class UsersService {
     return this.users;
   }
 
-  async findOne(id: number) {
+  findOne(id: number) {
     const user = this.users.find((user) => user.id === id);
 
     if (!user) {
@@ -32,7 +32,7 @@ export class UsersService {
     return user;
   }
 
-  async create(createUserDto: CreateUserDto) {
+  create(createUserDto: CreateUserDto) {
     const usersByHighestId = [...this.users].sort((a, b) => b.id - a.id);
     const newUser = {
       id: usersByHighestId[0].id + 1,
@@ -44,7 +44,7 @@ export class UsersService {
     return newUser;
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
+  update(id: number, updateUserDto: UpdateUserDto) {
     this.users = this.users.map((user) => {
       if (user.id === id) {
         return {
@@ -59,7 +59,7 @@ export class UsersService {
     return this.findOne(id);
   }
 
-  async delete(id: number) {
+  delete(id: number) {
     const removedUser = this.findOne(id);
 
     this.users = this.users.filter((user) => user.id !== id);

@@ -1,7 +1,7 @@
-import { User } from 'src/users/entity/user.entity';
+import { UserDto } from 'src/users/entity/user.entity';
 import { UserRole } from './types';
 
-export const users: User[] = [
+export const users: UserDto[] = [
   {
     id: 1,
     name: 'Katti Posnett',
